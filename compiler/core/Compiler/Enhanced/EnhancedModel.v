@@ -54,6 +54,7 @@ Require Import UriComponent.
 (* XXX Export those for convenience *)
 Require Export EnhancedData.
 Require Export EnhancedEJson.
+Require Export EnhancedWSON.
 Require Export EnhancedDataToEJson.
 Require Export EnhancedEJsonToJSON.
 Require Export EnhancedEJsonToWSON.
@@ -98,15 +99,17 @@ Module EnhancedModel(bm:CompilerBrandModel(EnhancedForeignType)) <: CompilerMode
     := enhanced_foreign_ejson_runtime_op.
   Definition compiler_model_foreign_to_ejson : foreign_to_ejson compiler_model_foreign_ejson_model compiler_model_foreign_ejson_runtime_op
     := enhanced_foreign_to_ejson.
-  Definition compiler_model_foreign_to_wson : foreign_to_wson compiler_model_foreign_ejson_model
+  Definition compiler_model_foreign_wson_model : Set
+    := enhanced_wson.
+  Definition compiler_model_foreign_to_wson : foreign_to_wson compiler_model_foreign_ejson_model compiler_model_foreign_wson_model
     := enhanced_foreign_to_wson.
   Definition compiler_model_foreign_to_ejson_runtime : foreign_to_ejson_runtime
     := enhanced_foreign_to_ejson_runtime.
-  Definition compiler_model_foreign_to_json : foreign_to_json
+  Definition compiler_model_foreign_to_json : @foreign_to_json compiler_model_foreign_ejson_model _
     := enhanced_foreign_to_json.
   Definition compiler_model_foreign_to_java : foreign_to_java
     := enhanced_foreign_to_java.
-  Definition compiler_model_foreign_ejson_to_ajavascript : foreign_ejson_to_ajavascript
+  Definition compiler_model_foreign_ejson_to_ajavascript : @foreign_ejson_to_ajavascript compiler_model_foreign_ejson_model _
     := enhanced_foreign_ejson_to_ajavascript.
   Definition compiler_model_foreign_to_wasm_ast : foreign_to_wasm_ast compiler_model_foreign_ejson_runtime_op
     := enhanced_foreign_to_wasm_ast.

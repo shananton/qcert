@@ -19,14 +19,17 @@ Require Import BrandRelation.
 Require Import DataRuntime.
 Require Import ForeignDataToEJson.
 Require Import DataToEJson.
+Require Import WSONRuntime.
+Require Import EJsonToWSON.
+Require Import ForeignEJsonToWSON.
 
 Section WasmAst.
-  Context {foreign_ejson_model:Set}.
-  Context {fejson:foreign_ejson foreign_ejson_model}.
+  Context {foreign_wson_model:Set}.
+  Context {fwson:foreign_wson foreign_wson_model}.
 
   (** WASM programs are in AST form *)
   Parameter wasm_ast : Set.
-  Parameter wasm_ast_eval : wasm_ast -> @jbindings foreign_ejson_model -> option (@ejson foreign_ejson_model).
+  Parameter wasm_ast_eval : wasm_ast -> @jbindings foreign_wson_model -> option (@wson foreign_wson_model).
   Parameter wasm_ast_to_string : wasm_ast -> nstring.
 End WasmAst.
 
@@ -37,12 +40,15 @@ Extract Constant wasm_ast_to_string => "Wasm_ast.to_string".
 Section Top.
   Context {foreign_ejson_model:Set}.
   Context {fejson:foreign_ejson foreign_ejson_model}.
-  Context {fruntime:foreign_runtime}.
   Context {foreign_ejson_runtime_op : Set}.
-  Context {fdatatoejson:foreign_to_ejson foreign_ejson_model foreign_ejson_runtime_op}.
+  Context {foreign_wson_model:Set}.
+  Context {ftowson:foreign_to_wson foreign_ejson_model foreign_wson_model}.
   (* XXX We should try and compile the hierarchy in. Currenty it is still used in cast for sub-branding check *)
 
+  Context {fruntime:foreign_runtime}.
+  Context {fdatatoejson:foreign_to_ejson foreign_ejson_model foreign_ejson_runtime_op}.
+
   Definition wasm_ast_eval_top (cenv: bindings) (q:wasm_ast) : option data :=
-    let jenv := List.map (fun xy => (fst xy, data_to_ejson(snd xy))) cenv in
-    lift ejson_to_data (wasm_ast_eval q jenv).
+    let jenv := List.map (fun xy => (fst xy, ejson_to_wson (data_to_ejson(snd xy)))) cenv in
+    lift ejson_to_data (lift wson_to_ejson (wasm_ast_eval q jenv)).
 End Top.

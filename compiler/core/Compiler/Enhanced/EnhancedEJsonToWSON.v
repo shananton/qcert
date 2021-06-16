@@ -19,14 +19,21 @@ Require Import ForeignWSON.
 Require Import ForeignEJsonToWSON.
 
 Require Import EnhancedEJson.
+Require Import EnhancedWSON.
 
-Parameter enhanced_foreign_to_wson_from_ejson : enhanced_ejson -> foreign_wson.
+Parameter enhanced_foreign_to_wson_from_ejson : enhanced_ejson -> enhanced_wson.
+Parameter enhanced_foreign_to_wson_to_ejson : enhanced_wson -> enhanced_ejson.
 
 Extract Constant enhanced_foreign_to_wson_from_ejson => "Wasm_enhanced.foreign_ejson_to_wson".
+Extract Constant enhanced_foreign_to_wson_to_ejson => "Wasm_enhanced.foreign_wson_to_ejson".
 
-Program Instance enhanced_foreign_to_wson : foreign_to_wson _ :=
-  mk_foreign_to_wson enhanced_ejson _.
+Program Instance enhanced_foreign_to_wson : foreign_to_wson _ _ :=
+  mk_foreign_to_wson enhanced_ejson enhanced_wson _ _.
+Next Obligation.
+  apply enhanced_foreign_to_wson_to_ejson.
+  exact j.
+Defined.
 Next Obligation.
   apply enhanced_foreign_to_wson_from_ejson.
-  exact j.
+  exact fd.
 Defined.

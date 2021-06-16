@@ -32,7 +32,7 @@ Class foreign_to_ejson
   := mk_foreign_to_ejson {
          foreign_to_ejson_runtime :> foreign_ejson_runtime foreign_ejson_runtime_op
          ; foreign_to_ejson_to_data
-             (j:foreign_ejson_model) : foreign_data_model
+            (j:foreign_ejson_model) : foreign_data_model
          ; foreign_to_ejson_from_data
              (fd:foreign_data_model) : foreign_ejson_model
          ; foreign_to_ejson_to_data_to_ejson (fd:foreign_data_model) :

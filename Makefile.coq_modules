@@ -64,6 +64,7 @@ MODULES = \
 	JSON/JSONRuntime \
 	JSON/JSONSystem \
 	WSON/Model/ForeignWSON \
+	WSON/Model/WSON \
 	WSON/Operators/ForeignWSONRuntime \
 	WSON/WSONRuntime \
 	WSON/WSONSystem \
@@ -126,6 +127,7 @@ MODULES = \
 	Translation/Model/EJsonToJSON \
 	Translation/Model/ForeignEJsonToWSON \
 	Translation/Model/EJsonToEJsonMut \
+	Translation/Model/EJsonToWSON \
 	Translation/Model/ForeignTypeToJSON \
 	Translation/Model/TypeToJSON \
 	Translation/Model/DTypeToJSON \
@@ -439,6 +441,7 @@ MODULES = \
 	Compiler/Component/UriComponent \
 	Compiler/Enhanced/EnhancedData \
 	Compiler/Enhanced/EnhancedEJson \
+	Compiler/Enhanced/EnhancedWSON \
 	Compiler/Enhanced/EnhancedDataToEJson \
 	Compiler/Enhanced/EnhancedEJsonToJSON \
 	Compiler/Enhanced/EnhancedEJsonToWSON \

@@ -53,6 +53,7 @@ Require Import LoggerComponent.
 
 Require Import EnhancedData.
 Require Import EnhancedEJson.
+Require Import EnhancedWSON.
 Require Import EnhancedDataToEJson.
 Require Import EnhancedEJsonToJSON.
 Require Import EnhancedEJsonToWSON.
@@ -143,13 +144,15 @@ Module EnhancedRuntime <: CompilerRuntime.
     enhanced_foreign_ejson_runtime_op.
   Definition compiler_foreign_to_ejson : foreign_to_ejson compiler_foreign_ejson_model compiler_foreign_ejson_runtime_op
     := enhanced_foreign_to_ejson.
-  Definition compiler_foreign_to_wson : foreign_to_wson compiler_foreign_ejson_model
+  Definition compiler_foreign_wson_model : Set
+    := enhanced_wson.
+  Definition compiler_foreign_to_wson : foreign_to_wson compiler_foreign_ejson_model compiler_foreign_wson_model
     := enhanced_foreign_to_wson.
   Definition compiler_foreign_to_ejson_runtime : foreign_to_ejson_runtime
     := enhanced_foreign_to_ejson_runtime.
-  Definition compiler_foreign_to_json : foreign_to_json
+  Definition compiler_foreign_to_json : @foreign_to_json compiler_foreign_ejson_model _
     := enhanced_foreign_to_json.
-  Definition compiler_foreign_ejson_to_ajavascript : foreign_ejson_to_ajavascript
+  Definition compiler_foreign_ejson_to_ajavascript : @foreign_ejson_to_ajavascript compiler_foreign_ejson_model _
     := enhanced_foreign_ejson_to_ajavascript.
   Definition compiler_foreign_to_wasm_ast : foreign_to_wasm_ast compiler_foreign_ejson_runtime_op
     := enhanced_foreign_to_wasm_ast.

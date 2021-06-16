@@ -49,6 +49,7 @@ Require Import WasmBinary.
 
 (* Foreign Support *)
 Require Import ForeignDataToEJson.
+Require Import ForeignEJsonToWSON.
 Require Import ForeignToReduceOps.
 Require Import ForeignToSpark.
 
@@ -67,6 +68,8 @@ Section CompEval.
   Context {fejson:foreign_ejson foreign_ejson_model}.
   Context {foreign_ejson_runtime_op : Set}.
   Context {ftejson:foreign_to_ejson foreign_ejson_model foreign_ejson_runtime_op}.
+  Context {foreign_wson_model:Set}.
+  Context {ftowson:foreign_to_wson foreign_ejson_model foreign_wson_model}.
   Context {fredop:foreign_reduce_op}.   (* Necessary for NNRCMR evaluation *)
   Context {ft:foreign_type}.            (* Necessary for DNNRC evaluation *)
   Context {bm:brand_model}.             (* Necessary for DNNRC evaluation *)

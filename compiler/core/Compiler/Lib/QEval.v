@@ -64,7 +64,7 @@ Module QEval(runtime:CompilerRuntime).
         runtime.compiler_foreign_reduce_op
         runtime.compiler_foreign_type
         bm -> eval_input -> eval_output := eval_query.
-    
+
     Definition eval_query_debug {bm:brand_model} :
       @query
         runtime.compiler_foreign_runtime

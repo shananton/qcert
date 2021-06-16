@@ -13,4 +13,5 @@
  *)
 
 Require Export ForeignWSON.
+Require Export WSON.
 Require Export ForeignWSONRuntime.

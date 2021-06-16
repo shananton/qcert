@@ -13,8 +13,11 @@
  *)
 
 Require Import Utils.
-Require Import ForeignEJson.
+Require Import EJson.
+Require Import ForeignWSON.
 
 Section ForeignWSON.
-  Definition foreign_wson := foreign_ejson.
+  Context {foreign_wson_model:Set}.
+  Context {fwson:foreign_wson foreign_wson_model}.
+  Definition wson := @ejson foreign_wson_model.
 End ForeignWSON.

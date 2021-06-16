@@ -19,8 +19,11 @@ Local Open Scope string_scope.
 
 Class foreign_to_wson
       (foreign_ejson_model:Set)
+      (foreign_wson_model:Set)
   : Type
   := mk_foreign_to_wson {
-         foreign_to_wson_from_ejson
-           (j:foreign_ejson_model) : foreign_wson
+         foreign_to_wson_to_ejson
+           (j:foreign_wson_model) : foreign_ejson_model
+         ; foreign_to_wson_from_ejson
+             (fd:foreign_ejson_model) : foreign_wson_model
        }.
