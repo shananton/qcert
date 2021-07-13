@@ -449,15 +449,6 @@ Section TNNRCShadow.
       unfold nnrc_type; eauto.
       + apply nnrc_type_rename_pick_subst.
         unfold nnrc_type; eauto.
-    - unfold NNRC.nnrc_group_by in *.
-      nnrc_inverter.
-      inversion H32; clear H32; subst.
-      inversion H26; clear H26; subst.
-      inversion H19; clear H19; subst.
-      inversion H10; clear H10; subst.
-      destruct x0; simpl in *.
-      rtype_equalizer. subst.
-      repeat (econstructor; eauto).
     - econstructor; [eauto|..].
       apply nnrc_type_rename_pick_subst in H6.
       unfold nnrc_type; eauto.
@@ -469,20 +460,6 @@ Section TNNRCShadow.
         unfold nnrc_type; eauto.
       + apply nnrc_type_rename_pick_subst in H9.
         unfold nnrc_type; eauto.
-    - unfold NNRC.nnrc_group_by in *.
-      nnrc_inverter.
-      inversion H32; clear H32; subst.
-      inversion H26; clear H26; subst.
-      inversion H19; clear H19; subst.
-      inversion H10; clear H10; subst.
-      destruct x0; simpl in *.
-      rtype_equalizer. subst.
-      repeat (econstructor; eauto).
-      Grab Existential Variables.
-      eauto.
-      eauto.
-      eauto.
-      eauto.
   Qed.
 
 End TNNRCShadow.

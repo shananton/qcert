@@ -707,8 +707,6 @@ Section TcNRAEnv.
         econstructor; qeauto.
         econstructor; qeauto.
         econstructor; qeauto.
-        econstructor; qeauto.
-        econstructor; qeauto.
       + trivial.
     (* cNRAEnvEnv *)
     - unfold nra_bind, nra_context_type. qeauto.
